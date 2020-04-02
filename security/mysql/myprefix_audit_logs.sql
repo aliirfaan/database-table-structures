@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `myprefix_audit_logs` (
+  `al_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `al_date_time_local` datetime NOT NULL COMMENT 'Timestamp in local timezone',
+  `al_date_time_utc` datetime DEFAULT NULL COMMENT 'Timestamp in UTC',
+  `al_actor_id` bigint(20) UNSIGNED NOT NULL COMMENT 'User id in application. Can be null in cases where an action is performed programmatically.',
+  `al_actor_global_uid` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'User id if using a single sign on facility',
+  `al_actor_username` varchar(100) DEFAULT NULL COMMENT 'Username in application',
+  `al_actor_group` varchar(100) DEFAULT NULL COMMENT 'User role/group in application',
+  `al_ip_addr` varbinary(16) DEFAULT NULL COMMENT 'User IP address',
+  `al_device_id` varchar(200) DEFAULT NULL COMMENT 'Device identifier',
+  `al_target_name` varchar(100) DEFAULT NULL COMMENT 'The object or underlying resource that is being accessed. Example: user',
+  `al_target_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'The ID of the resource that is being accessed',
+  `al_action_type` varchar(1) DEFAULT NULL COMMENT 'CRUD: Read, write, update, delete',
+  `al_event_name` varchar(100) DEFAULT NULL COMMENT 'Common name for the event that can be used to filter down to similar events. Example: user.login.success, user.login.failure, user.logout ',
+  `al_previous_value` text,
+  `al_new_value` int(11) DEFAULT NULL,
+  `al_server` varchar(100) DEFAULT NULL COMMENT 'Server ids or names, server location. Example: uat, production, testing, 192.168.2.10 ',
+  `al_version` varchar(10) DEFAULT NULL COMMENT 'Version of the code/release that is sending the events',
+  PRIMARY KEY (`al_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
