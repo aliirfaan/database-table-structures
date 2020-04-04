@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `myprefix_audit_logs` (
   `al_action_type` varchar(1) DEFAULT NULL COMMENT 'CRUD: Read, write, update, delete',
   `al_event_name` varchar(100) DEFAULT NULL COMMENT 'Common name for the event that can be used to filter down to similar events. Example: user.login.success, user.login.failure, user.logout ',
   `al_previous_value` text,
-  `al_new_value` int(11) DEFAULT NULL,
+  `al_new_value` text,
   `al_server` varchar(100) DEFAULT NULL COMMENT 'Server ids or names, server location. Example: uat, production, testing, 192.168.2.10 ',
   `al_version` varchar(10) DEFAULT NULL COMMENT 'Version of the code/release that is sending the events',
   PRIMARY KEY (`al_id`)
